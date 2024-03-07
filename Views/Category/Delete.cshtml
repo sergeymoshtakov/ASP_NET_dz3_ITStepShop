@@ -1,0 +1,33 @@
+﻿@model ITStepShop.Models.Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Видалення</h1>
+
+<h4>Категорії</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeletePost" method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" disabled/>
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DisplayOrder" class="control-label"></label>
+                <input asp-for="DisplayOrder" class="form-control" disabled/>
+                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Видалити" class="btn btn-danger" />
+                <a asp-action="Index" class="btn btn-info">До списку категорій</a>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Каталог курсів IT Step";
+}
+@model ITStepShop.Models.ViewModel.HomeVM
+
+    <div class="text-center">
+        <button class="btn btn-primary filter-button" data-filter="all">Всі категорії</button>
+        @foreach (var cat in Model.Categories)
+        {
+            <button class="btn btn-outline-secondary filter-button" data-filter="@cat.CategoryName.Replace(' ','_')">@cat.CategoryName</button>
+        }
+    </div>
+    <br />
+    <div class="row">
+        @foreach (var prod in Model.Products)
+        {
+            <partial name="_ProductPartial" model="prod"/>
+        }
+    </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () { 
+            $('.filter-button').click(function () {
+                var value = $(this).attr('data-filter');
+                if (value == "all") {
+                    $('.filter').show('1000');
+                }
+                else {
+                    $('.filter').not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+                }
+            })
+        })
+    </script>
+}
+

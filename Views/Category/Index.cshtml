@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ITStepShop.Models.Category>
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    int i = 0;
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Список категорій</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Створити категорію</a>
+        </div>
+    </div>
+
+
+@if (Model.Count() > 0)
+{
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead class="table-dark">
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>Ім'я катеогрії</th>
+                    <th>Порядок відображення</th>
+                    <th>Операції</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var cat in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td width="50%">@cat.CategoryName</td>
+                        <td width="50%">@cat.DisplayOrder</td>
+                        <td class="text-center">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Category" asp-route-id="@cat.Id" asp-action="Edit" class="btn btn-warning mx-2">Редагувати</a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@cat.Id" class="btn btn-danger mx-2">Видалити</a>
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                </tbody>
+        </table>
+}
+
+</div>
